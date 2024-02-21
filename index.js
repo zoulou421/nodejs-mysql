@@ -57,6 +57,20 @@ app.get('/employee1',(req, res)=>{
     })
 })
 
+//select employees
+app.get("/getemployees",(req,res)=>{
+   let sql='SELECT * FROM employee' ;
+   let query=db.query(sql,(err, results)=>{
+    if(err){
+        throw err;
+    }else{
+        console.log(results);
+        res.send("Employee details fetched!")
+    }
+   });
+});
+
+
 const port=(process.env.PORT||3000);
 
 app.listen(port,(req,res)=>{
