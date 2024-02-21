@@ -84,6 +84,18 @@ app.get('/updateemployee/:id',(req, res)=>{
     })
 });
 
+//delete employee
+app.get('/deleteemployee/:id',(req, res)=>{
+    let sql= `DELETE FROM employee WHERE id='${req.params.id}'`;
+    let query=db.query(sql,err=>{
+        if(err){
+            throw err;
+        }else{
+            res.send("employee deleted");
+        }
+    })
+})
+
 const port=(process.env.PORT||3000);
 
 app.listen(port,(req,res)=>{
