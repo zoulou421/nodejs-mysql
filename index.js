@@ -44,7 +44,18 @@ app.get('/createemployee',(req, res)=>{
     });
 });
 
-
+//insert employee
+app.get('/employee1',(req, res)=>{
+    let post={name:"Bonevy BEBY",designation:"Chef executive Officer"}
+    let sql='INSERT INTO employee SET ?'
+    let query=db.query(sql,post, err=>{
+        if(err){
+            throw err;
+        }else{
+            res.send("employee added successfully");
+        }
+    })
+})
 
 const port=(process.env.PORT||3000);
 
