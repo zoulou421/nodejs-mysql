@@ -25,6 +25,13 @@ app.get("/createdb",(req, res)=>{
          throw err;
      }else{
          res.send("Database created!");
+         console.log("your database has been created successfully!");
      }
  });
+});
+
+const port=(process.env.PORT||3000);
+
+app.listen(port,(req,res)=>{
+ console.log("Server started at port :"+port);
 });
