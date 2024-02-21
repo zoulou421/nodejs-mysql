@@ -6,6 +6,7 @@ const db= mysql.createConnection({
     host:"localhost",
     user:"root",
     password:"root",
+    database:"nodemysql"
 });
 
 //Connect to mysql
@@ -18,6 +19,7 @@ db.connect(err=>{
 
 const app= express();
 
+//create db
 app.get("/createdb",(req, res)=>{
  let sql="CREATE DATABASE nodemysql";
  db.query(sql, err=>{
@@ -29,6 +31,20 @@ app.get("/createdb",(req, res)=>{
      }
  });
 });
+
+//create table
+app.get('/createemployee',(req, res)=>{
+    let sql= 'CREATE TABLE employee(id int AUTO_INCREMENT, name VARCHAR(255),designation VARCHAR(255),PRIMARY KEY (id))';
+    db.query(sql,err=>{
+        if(err){
+            throw err;
+        }else {
+            res.send("table employee successfully created!");
+        }
+    });
+});
+
+
 
 const port=(process.env.PORT||3000);
 
