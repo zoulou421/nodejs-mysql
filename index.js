@@ -57,8 +57,8 @@ app.get('/employee1',(req, res)=>{
     })
 })
 
-//select employees
-app.get("/getemployees",(req,res)=>{
+//select employee
+app.get("/getemployee",(req,res)=>{
    let sql='SELECT * FROM employee' ;
    let query=db.query(sql,(err, results)=>{
     if(err){
@@ -70,6 +70,19 @@ app.get("/getemployees",(req,res)=>{
    });
 });
 
+//update employee:
+app.get('/updateemployee/:id',(req, res)=>{
+    let newName="Laurore BEBY";
+  //  let sql= `UPDATE employee SET name= `${newName}` WHERE id= ${req.params.id}`
+    let sql = `UPDATE employee SET name='${newName}'  WHERE id=${req.params.id}`;
+    let query= db.query(sql,err=>{
+        if(err){
+            throw err;
+        }else{
+            res.send("employee updated!");
+        }
+    })
+});
 
 const port=(process.env.PORT||3000);
 
